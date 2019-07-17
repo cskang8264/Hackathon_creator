@@ -34,13 +34,19 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'theme',
     'user',
+
+    'django.contrib.sites',  # allauth
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
 
 
     
@@ -102,6 +108,8 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+
+        'OPTION' : {'user_attributes' : ('email', 'name', 'phoneNuber')},
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -118,9 +126,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'ko-KR'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -149,6 +156,55 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
+SITE_ID = 2
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_URL = '/user/login/'
+
+
+# 이메일 인증
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'csdwkr66@gmail.com'
+EMAIL_HOST_PASSWORD = 'kang5265@@'
+EMAIL_USE_TLS = True
+
+
+
+
+
+
+
+#소셜 로그인
+NAVER_CLIENT_ID = 'GJ0RAhabU5o7M7JePAhk'
+NAVER_SECRET_KEY = 'S9azXOInzG'
+
+
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'name'
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'kakao': {
+#         'METHOD': 'oauth',
+#         'SCOPE': ['email', 'profile'],
+#         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+#         'INIT_PARAMS': {'cookie': True},
+#         'FIELDS': [
+#             'id',
+#             'accoutn_email',
+#             'profile'             
+#             'verified',
+#         ],
+#         'EXCHANGE_TOKEN': True,
+#         'LOCALE_FUNC': lambda request: 'ko_KR',
+#         'VERIFIED_EMAIL': False,
+#         'VERSION': 'v2.9',
+#     }
+# }
