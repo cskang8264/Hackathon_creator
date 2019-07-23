@@ -1,0 +1,105 @@
+{% load static %}
+
+
+{% static 'user/img/kakao_login.png' as kakao_button %}
+{% static 'user/img/kakao_login_ov.png' as kakao_button_hover %}
+{% static 'user/img/naver_login_green.png' as naver_button %}
+{% static 'user/img/naver_login_white.png' as naver_button_hover %}
+
+<title>로그인</title>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style>
+    .registration {
+        width: 360px;
+        margin: 0 auto;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    label {
+        width: 50%;
+        text-align: left;
+    }
+
+    .control-label {
+        width: 100%;
+    }
+
+    .registration .form-actions>button {
+        width: 100%;
+    }
+</style>
+
+<script src="{% static 'user/js/social_login.js' %}"></script>
+
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<div class="panel panel-default registration">
+    <div class="panel-heading">
+        소셜로그인
+    </div>
+    <div class="panel-body text-center">
+        <div class="pull-left">
+            <a id="kakao-login-btn"></a>
+            <a href="http://developers.kakao.com/logout"></a>
+            <script type='text/javascript'>
+                //<![CDATA[
+                // 사용할 앱의 JavaScript 키를 설정해 주세요.
+                Kakao.init('331107f058d6d4acfb4243d0bf73779d'); //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
+                // 카카오 로그인 버튼을 생성합니다.
+                Kakao.Auth.createLoginButton({
+                    container: '#kakao-login-btn',
+                    success: function (authObj) {
+                        alert(JSON.stringify(authObj));
+                    },
+                    fail: function (err) {
+                        alert(JSON.stringify(err));
+                    }
+                });
+                //]]>
+            </script>
+
+
+
+
+        </div>
+        <div class="pull-right">
+            <a href="#" onclick="naverLogin()">
+                <img src="{{ naver_button }}" onmouseover="this.src='{{ naver_button_hover }}'"
+                    onmouseleave="this.src='{{ naver_button }}'" height="34">
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-default registration">
+    <div class="panel-heading">
+        로그인
+    </div>
+    <div class="panel-body">
+        <form action="." method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group {% if field.errors|length > 0 %}has-error{%endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <input name="{{ field.html_name }}" id="{{ field.id_for_lable }}" class="form-control"
+                    type="{{ field.field.widget.input_type }}" value="{{ field.value|default_if_none:'' }}">
+                {% for error in field.errors %}
+                <label class="control-label" for="{{ field.id_for_label }}">{{ error }}</label>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <div class="form-actions">
+                <button class="btn btn-primary btn-large" type="submit">로그인</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
