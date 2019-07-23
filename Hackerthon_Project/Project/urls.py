@@ -25,7 +25,7 @@ urlpatterns = [
     path('user/login/', UserLoginView.as_view()),
     path('user/logout/', LogoutView.as_view()),
     path('user/login/social/<provider>/callback/', SocialLoginCallbackView.as_view()),
-    path('accounts/', include('allauth.urls')),
+    path('user/social', include('allauth.urls')),
    
 ]
 
