@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'theme',
     'user',
 
+    #learn_edit
+    'learn_edit',
+
     'django.contrib.sites',  # allauth
 
     'allauth',
@@ -94,9 +97,9 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
-        'USER' : 'test',
-        'PASSWORD' : 'kang5265',
+        'NAME': 'mysite',
+        'USER' : 'root',
+        'PASSWORD' : '714915',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }

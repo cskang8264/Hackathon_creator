@@ -26,6 +26,7 @@ urlpatterns = [
     path('user/logout/', LogoutView.as_view()),
     path('user/login/social/<provider>/callback/', SocialLoginCallbackView.as_view()),
     path('user/social', include('allauth.urls')),
+    path('',include('learn_edit.urls'))
    
 ]
 
