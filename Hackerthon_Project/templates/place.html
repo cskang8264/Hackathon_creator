@@ -1,0 +1,323 @@
+ {% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homes Template">
+    <meta name="keywords" content="Homes, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo">
+                        <a href="./index.html">
+                            <img src="{% static 'img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                    <ul class="main-menu">
+                        <li><a href="{% url 'mainpage' %}">Home</a></li>
+                        <li class=>
+                            {% if not request.user.is_authenticated %}
+                            <a href="/user/create/">가입하기</a>
+                            {% endif %}
+                        </li>
+                        <li class=>
+                            {% if request.user.is_authenticated %}
+                            <a href="/user/logout/">로그아웃</a>
+                            {% else %}
+                            <a href="/user/login/">로그인</a>
+                            {% endif %}
+                        <li><a href="#">소품구하기</a></li>
+                        <li><a href="./single-property.html">편집자구하기</a></li>
+                        <li><a href="{% url 'place' %}">장소구하기</a></li>
+                        <li><a href="./contact.html">편집강의듣기</a></li>
+
+                        <li class="top-social">
+                         
+                        </li>
+                    </ul>
+                    <div id="mobile-menu-wrap"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+    <section class="hero-section home-page set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+        <div class="container hero-text text-white">
+            <h2>방송의 모든것 </h2>
+            <h1>LikeLion</h1>
+            
+        </div>
+    </section>
+    <!-- Hero Section End -->
+    <!-- Filter Search Section Begin -->
+    <div class="filter-search">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="filter-form">
+                        <div class="location">
+                            <p>Location</p>
+                            <select class="filter-location">
+                                <option value="">London</option>
+                                <option value="">US</option>
+                                <option value="">UAE</option>
+                            </select>
+                        </div>
+                        <div class="search-type">
+                            <p>Property Type</p>
+                            <select class="filter-property">
+                                <option value="">House</option>
+                                <option value="">Resort</option>
+                                <option value="">Hotel</option>
+                            </select>
+                        </div>
+                        <div class="price-range">
+                            <p>Price</p>
+                            <div class="range-slider">
+                                <div id="slider-range">
+                                    <div tabindex="0"
+                                        class="ui-slider-handle ui-corner-all ui-state-default slider-left">50k</div>
+                                    <div tabindex="0"
+                                        class="ui-slider-handle ui-corner-all ui-state-default slider-right">300k</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bedrooms">
+                            <p>Bedrooms</p>
+                            <div class="room-filter-pagi">
+                                <div class="bf-item">
+                                    <input type="radio" name="room" id="room-1">
+                                    <label for="room-1">1</label>
+                                </div>
+                                <div class="bf-item">
+                                    <input type="radio" name="room" id="room-2">
+                                    <label for="room-2">2</label>
+                                </div>
+                                <div class="bf-item">
+                                    <input type="radio" name="room" id="room-3">
+                                    <label for="room-3">3</label>
+                                </div>
+                                <div class="bf-item">
+                                    <input type="radio" name="room" id="room-4">
+                                    <label for="room-4">4+</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bathrooms">
+                            <p>Bathrooms</p>
+                            <div class="room-filter-pagi">
+                                <div class="bf-item">
+                                    <input type="radio" name="bathroom" id="bathroom-1">
+                                    <label for="bathroom-1">1</label>
+                                </div>
+                                <div class="bf-item">
+                                    <input type="radio" name="bathroom" id="bathroom-2">
+                                    <label for="bathroom-2">2</label>
+                                </div>
+                                <div class="bf-item">
+                                    <input type="radio" name="bathroom" id="bathroom-3">
+                                    <label for="bathroom-3">3</label>
+                                </div>
+                                <div class="bf-item">
+                                    <input type="radio" name="bathroom" id="bathroom-4">
+                                    <label for="bathroom-4">4+</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-btn">
+                            <button type="submit"><i class="flaticon-search"></i>Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Filter Search Section End -->
+ 
+    
+    <a href="{% url 'place_new' %}"><button type="button" class="btn btn-danger">글등록</button></a>
+     
+     {% for place in places.all %}
+            <div class="card-group">
+            <div class="card">
+            {% if place.image %}
+                <img src="{{ place.image.url }}" class="card-img-top" alt="place_image">
+            {% endif %}
+                <div class="card-body">
+                <h5 class="card-title">{{ place.title }}</h5>
+                <p class="card-text">{{ place.pub_date }}</p>
+                <p class="card-text"><small class="text-muted">{{ place.summary }}<a href="{% url 'place_detail' place.id %}"> 더보기 </a></small></p>
+                </div>
+            </div> 
+            </div>
+            {% endfor %}
+ <!-- 카드리스트 시작 -->
+    {% comment %} <section class="hotel-rooms spad">
+        <div class="container">
+            {% for place in places.all %}
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-items">
+                        {% if place.image %}
+                        <div class="room-img set-bg" data-setbg="{{ place.image.url }}">
+                        {% endif %}
+                            <a href="#" class="room-content">
+                                <i class="flaticon-heart"></i>
+                            </a>
+                        </div>
+                        <div class="room-text">
+                            <div class="room-details">
+                                <div class="room-title">
+                                    <h5>{{ place.title}}</h5>
+                                    <a href="#"><i class="flaticon-placeholder"></i> <span>{{ place.pub_date }}</span></a>
+                                    <a href="#" class="large-width"><i class="flaticon-cursor"></i> <span>{{ place.summary }}
+                                        </span></a>
+                                </div>
+                            </div>
+                             <div class="room-price">
+                                <p>희망 가격</p>
+                                <span>$345,000</span>
+                            </div>
+                            <a href="{% url 'place_detail' place.id %}" class="site-btn btn-line">더보기</a>
+                        </div>
+                    </div>
+            {% endfor %}
+                </div>            
+    </section> {% endcomment %}
+    <!-- 카드리스트 끝 -->
+
+
+
+
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center sp-60">
+                    <img src="{% static 'img/only-logo.png' %}" alt="">
+                </div>
+            </div>
+            <div class="row p-37">
+                <div class="col-lg-4">
+                    <div class="about-footer">
+                        <h5>About Homes</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend tristique venenatis.
+                            Maecenas a rutrum tellus nam vel semper nibh.</p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-blog">
+                        <h5>Latest Blog Posts</h5>
+
+                        <div class="single-blog">
+                            <div class="lt-side">
+                                <img src="{% static 'img/footer-blog-1.jpg' %}" alt="">
+                            </div>
+                            <div class="rt-side">
+                                <h6>How to find the perfect area for<br> your next house.</h6>
+                                <div class="blog-time">
+                                    <i class="flaticon-clock"></i>
+                                    <span>5 min</span>
+                                </div>
+                                <a href="#" class="read-more">
+                                    <i class="flaticon-right-arrow-1"></i>
+                                    <span>Read More</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="single-blog">
+                            <div class="lt-side">
+                                <img src="{% static 'img/footer-blog-2.jpg' %}" alt="">
+                            </div>
+                            <div class="rt-side">
+                                <h6>How to find the perfect area for<br> your next house.</h6>
+                                <div class="blog-time">
+                                    <i class="flaticon-clock"></i>
+                                    <span>5 min</span>
+                                </div>
+                                <a href="#" class="read-more">
+                                    <i class="flaticon-right-arrow-1"></i>
+                                    <span>Read More</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-address">
+                        <h5>Get In Touch</h5>
+                        <ul>
+                            <li><i class="flaticon-placeholder"></i><span>132 Liberty Streetelit, Plano, Texas</span>
+                            </li>
+                            <li><i class="flaticon-envelope"></i><span>hello@home.com</span></li>
+                            <li><i class="flaticon-smartphone"></i><span>214-805-4428</span></li>
+                        </ul>
+                        <p>Monday – Friday: 9 am – 5 pm</p>
+                        <p>Saturday: 9 am – 1pm</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row p-20">
+                <div class="col-lg-12 text-center">
+                    <div class="copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
