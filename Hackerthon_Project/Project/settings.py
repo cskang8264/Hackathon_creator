@@ -40,13 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'theme',
     'user',
-
+    'place',
     'django.contrib.sites',  # allauth
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.naver',
+
 
 
     
@@ -94,8 +96,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb',
-        'USER' : 'test',
-        'PASSWORD' : 'kang5265',
+        'USER' : 'root',
+        'PASSWORD' : 'lsh1256',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
@@ -140,12 +142,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'Project/static'),
 
 
 )
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 AUTHENTICATION_BACKENDS = (
