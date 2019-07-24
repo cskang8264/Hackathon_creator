@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path ,include
 from django.contrib.auth.views import LogoutView
 from user.views import *
+import place.views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,8 +29,10 @@ urlpatterns = [
     path('user/logout/', LogoutView.as_view()),
     path('user/login/social/<provider>/callback/', SocialLoginCallbackView.as_view()),
     path('accounts/', include('allauth.urls')),
-   
-]
-
+    path('place/place/', place.views.place, name='place'),
+    path('place/place_new/', place.views.place_new, name='place_new'),
+    path('place/<int:place_id>/', place.views.place_detail, name='place_detail'),
+    
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'theme',
     'user',
     'place',
+  
     'django.contrib.sites',  # allauth
 
     'allauth',
@@ -142,15 +143,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'Project/static'),
+    os.path.join(BASE_DIR, 'Hackerthon_Projcet/static'),
 
 
 )
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'place')
+MEDIA_URL = '/place/'
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`

@@ -51,6 +51,7 @@ class SocialLoginCallbackView(NaverLoginMixin, View):
             return HttpResponseRedirect(success_url if is_success else self.failure_url)
 
         return HttpResponseRedirect(self.failure_url)
+    
 
         
 

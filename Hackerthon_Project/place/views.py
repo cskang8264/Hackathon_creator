@@ -57,7 +57,7 @@ def place_edit(request, pk):
     return place_create(request, place)
 
 # Delete
-def place_remove(request, pk):
+def place_delete(request, pk):
     place = get_object_or_404(Place, pk=pk)
     place.delete()
     return redirect('place')
