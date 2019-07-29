@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',  # allauth
 
+    #allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -97,7 +98,7 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysite',
+        'NAME': 'mytest',
         'USER' : 'root',
         'PASSWORD' : '714915',
         'HOST' : 'localhost',
