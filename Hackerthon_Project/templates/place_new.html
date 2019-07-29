@@ -1,4 +1,4 @@
-<br>
+{% comment %} <br>
 <div class="container">
 	<form action="{% url 'place_create' %}" method='POST' enctype="multipart/form-data">
 	 {% csrf_token %}
@@ -16,4 +16,12 @@
 	  <br>
 	  <input class="btn btn-dark" type="submit" value="제출하기">
   </form>
-</div>
+</div> {% endcomment %}
+
+<form method = 'POST' enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+		{{form.as_table}}
+	</table>
+	<input class="btn btn-dark" type="submit" value="제출하기">
+</form> 

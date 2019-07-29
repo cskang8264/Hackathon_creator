@@ -78,15 +78,30 @@
     <!-- Hero Section End -->
    <br><br>
  {% if place.image %}
-    <img src="{{ place.image.url }}" class="card-img-top" alt="place_image" width="30%" height="40%">
+    <img src="{{ place.image.url }}" class="card-img-top" alt="place_image" style="magin: 3rem; width: 18rem;">
  {% endif %}
 <h1>{{ place.title }}</h1>
 <p>{{ place.body }}</p>
 <p>{{ place.pub_date }}</p>
 
+{% for comment in place.comments.all %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h3>{{ comment.comment_text }}</h3>
+        </div>
+    </div>
+{% endfor %}
 
-<a href="{% url 'place' %}">돌아가기</a>
-     
+<a href="{% url 'place' %}">돌아가기잇</a>
+<a href="{% url 'place_edit' pk=place.pk %}" class="btn btn-primary">수정</a>
+<a href="{% url 'place_delete' pk=place.pk %}" class="btn btn-primary">삭제</a>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+
     
     <!-- Footer Section Begin -->
     <footer class="footer-section">

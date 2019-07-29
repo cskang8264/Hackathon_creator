@@ -153,9 +153,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="search-btn">
+    <form class="form-inline" action="{% url 'place' %}" method="get">
+    <div class="input-group">
+        <select name="fd_name" id="" class="form-control">
+            <option value="title">title</option>
+            <option value="body">content</option>
+        </select>
+        <input type="text" class="form-control" name='q'>
+        <button class="btn btn-secondary" type="submit">Search</button>
+    </div>
+</form>
+{% comment %} <form action="{% url 'place' %}" method="get">
+  <input type="text" name="q" value="{{ q }}">
+  <input type="submit" value="검색">
+</form> {% endcomment %}
+
+                        {% comment %} <div class="search-btn">
                             <button type="submit"><i class="flaticon-search"></i>Search</button>
-                        </div>
+                        </div> {% endcomment %}
                     </form>
                 </div>
             </div>
@@ -164,13 +179,41 @@
     <!-- Filter Search Section End -->
  
     
-    <a href="{% url 'place_new' %}"><button type="button" class="btn btn-danger">글등록</button></a>
+    <a href="{% url 'place_create' %}"><button type="button" class="btn btn-danger">글등록</button></a>
      
-     {% for place in places.all %}
+                     {% for place in places.all %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-items">
+                    {% if place.image %}
+                        <div class="room-img set-bg" data-setbg="{{ place.image.url }}">
+                    {% endif %}
+                            <a href="#" class="room-content">
+                                <i class="flaticon-heart"></i>
+                            </a>
+                        </div>
+                        <div class="room-text">
+                            <div class="room-details">
+                                <div class="room-title">
+                                    <h5>{{ place.title }}</h5>
+                                    <a href="#"><i class="flaticon-placeholder"></i> <span>Location</span></a>
+                                    <a href="#" class="large-width"><i class="flaticon-cursor"></i> <span>Show on
+                                            Map</span></a>
+                                </div>
+                            </div>
+                            <div class="room-price">
+                                <p>create_at</p>
+                                <span>{{ place.summary }}</span>
+                            </div>
+                            <a href="{% url 'place_detail' place.id %}" class="site-btn btn-line">View Property</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+     {% comment %} {% for place in places.all %}
             <div class="card-group">
             <div class="card">
             {% if place.image %}
-                <img src="{{ place.image.url }}" class="card-img-top" alt="place_image">
+                <img src="{{ place.image.url }}" class="card-img-top" alt="place_image" style="magin: 3rem; width: 18rem;">
             {% endif %}
                 <div class="card-body">
                 <h5 class="card-title">{{ place.title }}</h5>
@@ -179,7 +222,7 @@
                 </div>
             </div> 
             </div>
-            {% endfor %}
+    {% endfor %} {% endcomment %}
  <!-- 카드리스트 시작 -->
     {% comment %} <section class="hotel-rooms spad">
         <div class="container">

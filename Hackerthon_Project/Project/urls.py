@@ -32,7 +32,12 @@ urlpatterns = [
     path('place/place/', place.views.place, name='place'),
     path('place/place_new/', place.views.place_new, name='place_new'),
     path('place/<int:place_id>/', place.views.place_detail, name='place_detail'),
-    
+    path('place/place_create/', place.views.place_create, name='place_create'),
+    path('place/<int:pk>/place_edit/', place.views.place_edit, name='place_edit'),
+    path('place/<int:pk>/place_delete/', place.views.place_delete, name='place_delete'),
+    path('place/create/', place.views.create, name='create'),
+
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
