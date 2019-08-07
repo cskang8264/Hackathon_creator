@@ -1,15 +1,28 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.views import LoginView
-from django.views.generic import CreateView
+from django.contrib.auth.views import LoginView  
+from django.views.generic import CreateView , UpdateView
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib import messages
+from django.shortcuts import get_object_or_404, render
 
-
+from .models import User
 from .forms import UserRegistrationForm,LoginForm
 from django.conf import settings
 from django.views.generic.base import TemplateView, View
 from django.middleware.csrf import _compare_salted_tokens
 from .oauth.providers.naver import NaverLoginMixin
+
+class UserUpdateView(UpdateView):
+    model = User
+    form_class = UserRegistrationForm
+    template_name = 'user/mypage.html' #2
+    success_url = '/' #3
+
+    #get object
+    def get_object(self): 
+        user = get_object_or_404(User, pk=self.kwargs['pk']) #4
+
+        return user
 
 
 class UserRegistrationView(CreateView):
