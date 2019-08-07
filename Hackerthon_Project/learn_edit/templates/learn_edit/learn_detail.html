@@ -63,13 +63,8 @@
             <!--image-->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="property-img owl-carousel">
-                        <div class="single-img">
-                            <img src="{% static 'img/single-property/1.jpg' %}" alt="">
-                        </div>
-                        <div class="single-img">
-                            <img src="{% static 'img/single-property/2.jpg' %}" alt="">
-                        </div>
+                    <div class="fotorama">
+                        <a href="{{ blog.link }}"></a>
                     </div>
                 </div>
             </div>
@@ -87,7 +82,7 @@
                             <div class="col-lg-12">
                                 <div class="t-details">
                                     <div class="register-id">
-                                        <p>Registered ID: <span>0D05426FF1</span></p>
+                                        <p>Registered ID: <span>{{ blog.link }}</span></p>
                                     </div>
                                 </div>
                             </div>
