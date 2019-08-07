@@ -55,9 +55,13 @@
                             {% else %}
                             <a href="/user/login/">로그인</a>
                             {% endif %}
-                        <li><a href="./about.html">소품구하기</a></li>
-                        <li><a href="#">편집자구하기</a></li>
-                        <li><a href="./blog.html">장소구하기</a></li>
+                        {% comment %} <li><a href="#">소품구하기</a></li> {% endcomment %}
+                        <li><a href="{% url 'editor' %}">편집자구하기</a></li>
+                        <li><a href="{% url 'place' %}">장소구하기</a></li>
+                        {% comment %} <li><a href="./contact.html">편집강의듣기</a></li> {% endcomment %}
+                        <li><a href="{% url 'prop' %}">소품구하기</a></li>
+                        {% comment %} <li><a href="#">편집자구하기</a></li> {% endcomment %}
+                        {% comment %} <li><a href="./blog.html">장소구하기</a></li> {% endcomment %}
                         <li><a href="{% url 'learn:learn' %}">편집강의듣기</a></li>
 
                         <li class="top-social">

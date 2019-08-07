@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\parkj\Desktop\Programming\django_hackaton\Hackathon_creator\myvenv"
+VIRTUAL_ENV="C:\mypython\Hackathon_creator\myvenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
