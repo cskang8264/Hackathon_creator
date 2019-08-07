@@ -27,7 +27,11 @@ function global:deactivate ([switch]$NonDestructive) {
 
 deactivate -nondestructive
 
+<<<<<<< HEAD
 $env:VIRTUAL_ENV="C:\mypython\Hackathon_creator\myvenv"
+=======
+$env:VIRTUAL_ENV="C:\Users\parkj\Desktop\Programming\django_hackaton\Hackathon_creator\myvenv"
+>>>>>>> b080db7c914c8ee3ada1d3b6e1480c5f72514aa0
 
 if (! $env:VIRTUAL_ENV_DISABLE_PROMPT) {
     # Set the prompt to include the env name

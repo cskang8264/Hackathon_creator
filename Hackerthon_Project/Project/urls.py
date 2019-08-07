@@ -36,8 +36,9 @@ urlpatterns = [
     path('place/<int:pk>/place_edit/', place.views.place_edit, name='place_edit'),
     path('place/<int:pk>/place_delete/', place.views.place_delete, name='place_delete'),
     path('place/create/', place.views.create, name='create'),
-
-
+    path('user/social', include('allauth.urls')),
+    path('',include('learn_edit.urls')),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

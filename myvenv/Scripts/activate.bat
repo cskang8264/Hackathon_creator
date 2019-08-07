@@ -1,14 +1,22 @@
 @echo off
 
 rem This file is UTF-8 encoded, so we need to update the current code page while executing it
+<<<<<<< HEAD
 for /f "tokens=2 delims=:" %%a in ('"%SystemRoot%\System32\chcp.com"') do (
+=======
+for /f "tokens=2 delims=:." %%a in ('"%SystemRoot%\System32\chcp.com"') do (
+>>>>>>> b080db7c914c8ee3ada1d3b6e1480c5f72514aa0
     set "_OLD_CODEPAGE=%%a"
 )
 if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set "VIRTUAL_ENV=C:\mypython\Hackathon_creator\myvenv"
+=======
+set "VIRTUAL_ENV=C:\Users\parkj\Desktop\Programming\django_hackaton\Hackathon_creator\myvenv"
+>>>>>>> b080db7c914c8ee3ada1d3b6e1480c5f72514aa0
 
 if not defined PROMPT (
     set "PROMPT=$P$G"

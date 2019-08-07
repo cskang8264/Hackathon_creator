@@ -79,6 +79,7 @@
     </section>
     <!-- Hero Section End -->
     <!-- Filter Search Section Begin -->
+    
     <div class="filter-search">
         <div class="container ">
             <div class="row">
@@ -180,7 +181,9 @@
  
     
     <a href="{% url 'place_create' %}"><button type="button" class="btn btn-danger">글등록</button></a>
-     
+      <section class="hotel-rooms spad">
+        <div class="container">
+            <div class="row">
                      {% for place in places.all %}
                 <div class="col-lg-4 col-md-6">
                     <div class="room-items">
@@ -257,7 +260,9 @@
                 </div>            
     </section> {% endcomment %}
     <!-- 카드리스트 끝 -->
-
+</div>
+</div>
+</section>
 
 
 

@@ -42,8 +42,13 @@ INSTALLED_APPS = [
     'user',
     'place',
   
+
+    #learn_edit
+    'learn_edit',
+
     'django.contrib.sites',  # allauth
 
+    #allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -187,6 +192,8 @@ EMAIL_USE_TLS = True
 NAVER_CLIENT_ID = 'GJ0RAhabU5o7M7JePAhk'
 NAVER_SECRET_KEY = 'S9azXOInzG'
 
+KAKAO_CLIENT_ID = '0288b717f3c55039c12153835684a040'
+NAVER_SECRET_KEY = 'none'
 
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
