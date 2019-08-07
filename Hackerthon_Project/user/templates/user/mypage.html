@@ -1,0 +1,40 @@
+
+
+
+<div class="panel panel-default registration">
+    <div class="panel-heading">
+        내 정보
+    </div>
+    <div class="panel-body">
+            <form class="jumbotron" 
+            method="POST" 
+            action="{% url 'mypage' user.id %}">
+            {% csrf_token %}
+      
+          <h3>정보 수정하기</h3><hr>
+      
+          {% for field in form %}
+          
+          <div class="form-group row ">
+              <label for="colFormLabel" class="col-sm-2 col-form-label">{{ field.label_tag }}</label>
+      
+              <div class="col-sm-10 ">
+                  {{ field }}
+                  
+                  {% if field.errors %}
+                      {% for e in field.errors %}
+                          <p style="color:palevioletred;">{{ e | escape }}</p>
+                      {% endfor %}
+                  {% endif %}
+      
+              </div>
+          </div>
+      {% endfor %}
+      
+      <button value='action' name='UserUpdateForm' type="submit">수정하기</button>
+      </form>
+      
+       
+        
+    </div>
+</div>
