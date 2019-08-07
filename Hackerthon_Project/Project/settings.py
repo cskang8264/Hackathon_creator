@@ -40,13 +40,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'theme',
     'user',
+    'place',
+    'editor',
+    'prop',
+
+    #learn_edit
+    'learn_edit',
 
     'django.contrib.sites',  # allauth
 
+    #allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.naver',
+
 
 
     
@@ -94,8 +103,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb',
-        'USER' : 'test',
-        'PASSWORD' : 'kang5265',
+        'USER' : 'root',
+        'PASSWORD' : 'lsh1256',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
@@ -145,8 +154,12 @@ STATICFILES_DIRS = (
 
 )
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'place')
+# MEDIA_URL = '/place/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/')
+MEDIA_URL = '/'
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`

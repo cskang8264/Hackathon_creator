@@ -11,3 +11,5 @@ class UserRegistrationForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm):
     username = EmailField(widget=forms.EmailInput(attrs={'autofocus': True}))
+
+

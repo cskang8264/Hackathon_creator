@@ -1,0 +1,8 @@
+{
+<<<<<<< HEAD
+    "python.pythonPath": "myvenv\\Scripts\\python.exe",
+    "git.ignoreLimitWarning": true
+=======
+    "python.pythonPath": "myvenv\\Scripts\\python.exe"
+>>>>>>> b080db7c914c8ee3ada1d3b6e1480c5f72514aa0
+}
