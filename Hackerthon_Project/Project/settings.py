@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'theme',
     'user',
     'place',
-  
+    'editor',
+    'prop',
 
     #learn_edit
     'learn_edit',
@@ -155,8 +156,10 @@ STATICFILES_DIRS = (
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'place')
-MEDIA_URL = '/place/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'place')
+# MEDIA_URL = '/place/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/')
+MEDIA_URL = '/'
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
