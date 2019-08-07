@@ -56,6 +56,7 @@ urlpatterns = [
     path('prop/<int:pk>/prop_delete/', prop.views.prop_delete, name='prop_delete'),
     path('prop/create/', prop.views.create, name='pr_create'),
 
+    path('user/<int:pk>/mypage', UserUpdateView.as_view(), name='mypage'),
     path('user/social', include('allauth.urls')),
     path('',include('learn_edit.urls')),
     
