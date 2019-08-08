@@ -4,13 +4,14 @@ from .models import Blog, Comment
 from .forms import BlogForm, CommentForm
 
 
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def learn_main(request):
     blogs = Blog.objects
     return render(request, "learn_edit/learn.html", {"blogs": blogs})
 
-
+@login_required
 def learn_post(request):
     if request.method == "POST":
         form = BlogForm(request.POST, request.FILES)
@@ -27,7 +28,7 @@ def learn_post(request):
     else:
         form = BlogForm()
         return render(request, "learn_edit/learn_post.html", {'form':form})
-
+@login_required
 def learn_detail(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     if request.method == "POST":
@@ -41,7 +42,7 @@ def learn_detail(request, blog_id):
     else:
         form = CommentForm()
         return render(request, "learn_edit/learn_detail.html",{'blog':blog, 'form': form})
-
+@login_required
 def learn_edit(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     if request.method == "POST":
@@ -55,7 +56,7 @@ def learn_edit(request, blog_id):
     else:
         form = BlogForm(instance=blog)
         return render(request, "learn_edit/learn_post.html", {'form': form})
-
+@login_required
 def learn_delete(request, blog_id):
     blog = get_object_or_404(Blog, id = blog_id)
     blog.delete()
@@ -64,11 +65,12 @@ def learn_delete(request, blog_id):
 """
 댓글 기능
 """
+@login_required
 def learn_comment_del(request, comment_id):
     comment = get_object_or_404(Comment, id = comment_id)
     comment.delete()
     return redirect("learn:learn_detail", comment.blog.id)
-
+@login_required
 def learn_comment_edit(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     if request.method == "POST":

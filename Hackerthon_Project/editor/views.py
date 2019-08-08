@@ -4,6 +4,9 @@ from django.utils import timezone
 from .forms import Editor_create, CommentForm
 from .models import Editor, Comment
 
+from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 def editor(request):
     editors = Editor.objects
@@ -26,10 +29,10 @@ def editor(request):
     #      })
     # else:
         return render(request, 'editor.html', {'editors':editors})
-
+@login_required
 def editor_new(request):
     return render(request, 'editor_new.html')
-
+@login_required
 def create(request):
     editor = Editor()
     editor.title = request.GET['title']
@@ -41,7 +44,7 @@ def create(request):
 # def place_detail(request, place_id):
 #     place_detail = get_object_or_404(Place, pk=place_id)
 #     return render(request, 'place_detail.html', {'place': place_detail})
-
+@login_required
 def editor_detail(request, editor_id):
     editor = get_object_or_404(Editor, id=editor_id)
     if request.method == "POST":
@@ -58,6 +61,7 @@ def editor_detail(request, editor_id):
 def summary(self):
     return self.body[:100]
 
+@login_required
 def editor_create(request, editor=None):
     if request.method == 'POST':
         form = Editor_create(request.POST, request.FILES, instance=editor)
@@ -91,11 +95,13 @@ def editor_create(request, editor=None):
 #         return render(request, 'place_new.html', {'form': form})
 
 # Edit
+@login_required
 def editor_edit(request, pk):
     editor = get_object_or_404(Editor, pk=pk)
     return editor_create(request, editor)
 
 # Delete
+@login_required
 def editor_delete(request, pk):
     editor = get_object_or_404(Editor, pk=pk)
     editor.delete()

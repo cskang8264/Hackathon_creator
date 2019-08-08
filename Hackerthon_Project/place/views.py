@@ -3,6 +3,7 @@ from django.utils import timezone
 
 from .forms import Place_create, CommentForm
 from .models import Place, Comment
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def place(request):
@@ -30,6 +31,7 @@ def place(request):
 def place_new(request):
     return render(request, 'place_new.html')
 
+@login_required
 def create(request):
     place = Place()
     place.title = request.GET['title']
@@ -41,7 +43,7 @@ def create(request):
 # def place_detail(request, place_id):
 #     place_detail = get_object_or_404(Place, pk=place_id)
 #     return render(request, 'place_detail.html', {'place': place_detail})
-
+@login_required
 def place_detail(request, place_id):
     place = get_object_or_404(Place, id=place_id)
     if request.method == "POST":
@@ -57,7 +59,7 @@ def place_detail(request, place_id):
         return render(request, "place_detail.html", {"place":place, "form":form})
 def summary(self):
     return self.body[:100]
-
+@login_required
 def place_create(request, place=None):
     if request.method == 'POST':
         form = Place_create(request.POST, request.FILES, instance=place)
@@ -91,11 +93,13 @@ def place_create(request, place=None):
 #         return render(request, 'place_new.html', {'form': form})
 
 # Edit
+@login_required
 def place_edit(request, pk):
     place = get_object_or_404(Place, pk=pk)
     return place_create(request, place)
 
 # Delete
+@login_required
 def place_delete(request, pk):
     place = get_object_or_404(Place, pk=pk)
     place.delete()
