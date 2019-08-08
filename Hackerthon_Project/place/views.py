@@ -4,6 +4,10 @@ from django.utils import timezone
 from .forms import Place_create, CommentForm
 from .models import Place, Comment
 
+from django.views.generic.base import View
+from django.http import HttpResponseForbidden
+from urllib.parse import urlparse
+
 # Create your views here.
 def place(request):
     places = Place.objects
@@ -100,3 +104,36 @@ def place_delete(request, pk):
     place = get_object_or_404(Place, pk=pk)
     place.delete()
     return redirect('place')
+
+    
+class PlaceLike(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated: #로그인확인
+            return HttpResponseForbidden()
+        else:
+            if 'place_id' in kwargs:
+                place_id = kwargs['place_id']
+                place = Place.objects.get(pk=place_id)
+                user = request.user
+                if user in place.like.all():
+                    place.like.remove(user)
+                else:
+                    place.like.add(user)
+            referer_url = request.META.get('HTTP_REFERER')
+            path = urlparse(referer_url).path
+            return HttpResponseRedirect(path)
+
+class PlaceFavorite(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        else:
+            if 'place_id' in kwargs:
+                place_id = kwargs['place_id']
+                place = Place.objects.get(pk=place_id)
+                user = request.user
+                if user in place.favorite.all():
+                    place.favorite.remove(user)
+                else:
+                    place.favorite.add(user)
+            return HttpResponseRedirect('/')

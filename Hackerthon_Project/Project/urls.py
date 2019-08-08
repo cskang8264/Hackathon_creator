@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path ,include
 from django.contrib.auth.views import LogoutView
 from user.views import *
-import place.views
+import place.views 
 import editor.views
 import prop.views
 from django.conf import settings
 from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -56,9 +57,16 @@ urlpatterns = [
     path('prop/<int:pk>/prop_delete/', prop.views.prop_delete, name='prop_delete'),
     path('prop/create/', prop.views.create, name='pr_create'),
 
+    #좋아요
+    path('place/like/<int:place_id>/', place.views.PlaceLike, name='like'),
+    path('place/favorite/<int:place_id>/', place.views.PlaceFavorite, name='favorite'),
+
     path('user/<int:pk>/mypage', UserUpdateView.as_view(), name='mypage'),
     path('user/social', include('allauth.urls')),
     path('',include('learn_edit.urls')),
+
+    
+   
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

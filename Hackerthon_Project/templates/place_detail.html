@@ -80,9 +80,17 @@
  {% if place.image %}
     <img src="{{ place.image.url }}" class="card-img-top" alt="place_image" style="magin: 3rem; width: 18rem;">
  {% endif %}
+<p> {{object.author}}</p>
 <h1>{{ place.title }}</h1>
 <p>{{ place.body }}</p>
 <p>{{ place.pub_date }}</p>
+<a href = "{% url 'place:like' object.id %}" class="float-left btn-like {% if user in object.like.all %} active {% endif %}">좋아요!</a>
+{% if object.like.all.count %}
+<span class = "float-left">
+    {{object.like.all.count}}
+</span>
+{% endif %}
+<a href="{% url 'place:favorite' object.id %}" class="float-right btn-favorite {% if user in object.favorite.all %} active {% endif %}"> 저장하기!</a>
 
 {% for comment in place.comments.all %}
     <div class="jumbotron jumbotron-fluid">

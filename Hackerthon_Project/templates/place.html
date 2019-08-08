@@ -184,15 +184,25 @@
       <section class="hotel-rooms spad">
         <div class="container">
             <div class="row">
+          
                      {% for place in places.all %}
                 <div class="col-lg-4 col-md-6">
                     <div class="room-items">
                     {% if place.image %}
                         <div class="room-img set-bg" data-setbg="{{ place.image.url }}">
                     {% endif %}
-                            <a href="#" class="room-content">
-                                <i class="flaticon-heart"></i>
-                            </a>
+                     <a href = "{% url 'like' place.id %}" class="float-left btn-like {% if user in place.like.all %} active {% endif %}"> 좋아요 ! </a>
+                            {% if place.like.all.count %}
+                            <span class="float-left">
+                                {{place.like.all.count}}
+                            </span>
+                            {% endif %}
+                            <a href="{% url 'favorite' place.id %}" class="float-right btn-favorite {% if user in place.favorite.all %} active {% endif %}">저장하기!</a>
+                            {% comment %} <a href="#" class="room-content">
+                                        <i class="flaticon-heart"></i>
+                            </a> {% endcomment %}
+                             
+                            
                         </div>
                         <div class="room-text">
                             <div class="room-details">
