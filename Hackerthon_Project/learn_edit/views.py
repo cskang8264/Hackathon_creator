@@ -47,22 +47,26 @@ def learn_detail(request, blog_id):
 def learn_edit(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     current_user_id = request.user.id
-    if request.method == "POST":
-            if form.is_valid():
-                if blog.user.id == current_user_id:
-                        form = BlogForm(request.POST, request.FILES, instance=blog)
-                        blog = form.save(commit=False)
-                        blog.title = form.cleaned_data["title"]
-                        blog.content = form.cleaned_data["content"]
-                        blog.user_id = request.user.id
-                        blog.save()
-                        return redirect("learn:learn_detail", blog.id)
-                else:
-                        return render(request, 'warning.html')
+    form = BlogForm(request.POST, request.FILES, instance=blog)
+    if blog.user_id == current_user_id:
+         if request.method == "POST":
+                 if form.is_valid():
+                
+                        
+                     blog = form.save(commit=False)
+                     blog.title = form.cleaned_data["title"]
+                     blog.content = form.cleaned_data["content"]
+                     blog.user_id = request.user.id
+                     blog.save()
+                     return redirect("learn:learn_detail", blog.id)
+   
 
+         else:
+               form = BlogForm(instance=blog)
+         return render(request, "learn_edit/learn_post.html", {'form': form})
     else:
-        form = BlogForm(instance=blog)
-    return render(request, "learn_edit/learn_post.html", {'form': form})
+            return render(request, 'warning.html')
+    
 @login_required
 def learn_delete(request, blog_id):
     blog = get_object_or_404(Blog, id = blog_id)
