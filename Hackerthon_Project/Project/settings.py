@@ -99,9 +99,9 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
-        'USER' : 'test',
-        'PASSWORD' : 'kang5265',
+        'NAME': 'mytest1',
+        'USER' : 'root',
+        'PASSWORD' : '714915',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
@@ -166,7 +166,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 5
+SITE_ID = 2
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
