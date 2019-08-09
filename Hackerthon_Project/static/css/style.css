@@ -1,4 +1,5 @@
 @font-face { font-family: 'BBTreeGR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
 /******************************************************************
 Theme Name: 
 Description: 
@@ -132,6 +133,7 @@ ol {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
+	
 }
 
 .spad {
@@ -343,18 +345,30 @@ ol {
 }
 
 .hero-text {
-	padding-top: 272px;
+	padding-top: 130px;
 	text-align: center;
+	padding-right: 60px;
+	font-family:'S-CoreDream-8Heavy';
+}
+
+.hero-text h3 {
+	font-size: 40px;
+	font-weight: 600;
+	font-family:'S-CoreDream-8Heavy';
+	color: skyblue;
 }
 
 .hero-text h2 {
-	font-size: 48px;
-	font-weight: 300;
+	font-size: 40px;
+	font-weight: 600;
+	color : red;
+	font-family:'S-CoreDream-8Heavy';
 }
 
 .hero-text h1 {
-	font-size: 72px;
-	font-weight: 300;
+	font-size: 40px;
+	font-weight: 600;
+	font-family:'S-CoreDream-8Heavy';
 }
 
 .hero-section.search-result,
@@ -368,7 +382,7 @@ ol {
 .hero-section.about-us .hero-text,
 .hero-section.single-property-r .hero-text,
 .hero-section.blog .hero-text {
-	padding-top: 178px;
+	padding-top: 100px;
 }
 
 /*---------------------

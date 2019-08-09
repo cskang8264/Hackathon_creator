@@ -66,9 +66,14 @@
     </header>
     <!-- Header Section End -->
     <!-- Hero Section Begin -->
-    <section class="hero-section home-page set-bg" data-setbg="{% static 'img/main.png' %}">
+    <section class="hero-section home-page set-bg" data-setbg="{% static 'img/mymain.png' %}">
+
         <div class="container hero-text text-white">
-            
+            <h1> {%block line1%} 나는  {%endblock%}</h1>
+        <h2>{%block line2%} 유튜브 {%endblock%}</h2>
+        <h3>{%block line3%} 크리에이터를{%endblock%}</h3>
+        <h1>{%block line4%} 꿈꾼다 {%endblock%}</h1>
+ 
         </div>
     </section>
     <!-- Hero Section End -->
