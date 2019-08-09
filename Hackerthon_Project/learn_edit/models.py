@@ -6,7 +6,8 @@ class Blog(models.Model):
     title = models.CharField(max_length=40, null=False)
     content = models.TextField(null=True)
     create_at = models.DateTimeField(auto_now_add=True)
-    link = models.CharField(max_length=100, null=False)
+    link = models.CharField(max_length=100, null=True, blank=True)
+    link2 = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.title
