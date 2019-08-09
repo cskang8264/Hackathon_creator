@@ -36,12 +36,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="logo">
-                        <a href="{% url 'mainpage' %}">
-                            <img src="{% static 'img/logo.png' %}" alt="">
-                        </a>
-                    </div>
-                    <ul class="main-menu">
+                    
+                   <center> <ul class="main-menu">
                         <li><a href="{% url 'mainpage' %}">Home</a></li>
                         <li class=>
                             {% if not request.user.is_authenticated %}
@@ -55,19 +51,14 @@
                             {% else %}
                             <a href="/user/login/">로그인</a>
                             {% endif %}
-                        {% comment %} <li><a href="#">소품구하기</a></li> {% endcomment %}
+                        
                         <li><a href="{% url 'editor' %}">편집자구하기</a></li>
                         <li><a href="{% url 'place' %}">장소구하기</a></li>
-                        {% comment %} <li><a href="./contact.html">편집강의듣기</a></li> {% endcomment %}
                         <li><a href="{% url 'prop' %}">소품구하기</a></li>
-                        {% comment %} <li><a href="#">편집자구하기</a></li> {% endcomment %}
-                        {% comment %} <li><a href="./blog.html">장소구하기</a></li> {% endcomment %}
                         <li><a href="{% url 'learn:learn' %}">편집강의듣기</a></li>
 
-                        <li class="top-social">
-                         
-                        </li>
-                    </ul>
+                        
+                    </ul></center>
                     <div id="mobile-menu-wrap"></div>
                 </div>
             </div>
@@ -75,16 +66,15 @@
     </header>
     <!-- Header Section End -->
     <!-- Hero Section Begin -->
-    <section class="hero-section home-page set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+    <section class="hero-section home-page set-bg" data-setbg="{% static 'img/main.png' %}">
         <div class="container hero-text text-white">
-            <h2>방송의 모든것 </h2>
-            <h1>LikeLion</h1>
             
         </div>
     </section>
     <!-- Hero Section End -->
 {% block content %}{% endblock %}
     <!-- Footer Section Begin -->
+    
     <footer class="footer-section">
         <!-- Rooms Pic Section Begin-->
         <div class="room-pic">
@@ -172,7 +162,7 @@
                 <div class="col-lg-12 text-center">
                     <div class="copyright">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> 멋쟁이 사자처럼 7기 해커톤 <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
                     </div>
