@@ -1,3 +1,4 @@
+ {% load staticfiles %}
 {% comment %} <br>
 <div class="container">
 	<form action="{% url 'place_create' %}" method='POST' enctype="multipart/form-data">
@@ -18,6 +19,76 @@
   </form>
 </div> {% endcomment %}
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homes Template">
+    <meta name="keywords" content="Homes, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+
+     <!-- 구글맵 스크립트 -->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAmW9z3A8kHquNkrJIrrbWzuFds9zDttIk&sensor=true">
+    </script>
+         <script>
+        
+            var geocoder;
+            var map;
+            
+            function getLocation(){//좌표 자동 생성
+                if(navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(initialize);
+                }else{
+                    alert("Not Support Browser");
+                }
+            }        
+        
+            function initialize(position){            
+                geocoder = new google.maps.Geocoder();
+                var mapOption = {
+                    center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+                    zoom:15,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                };
+                map=new google.maps.Map(document.getElementById("googleMap"),mapOption);
+            }
+            google.maps.event.addDomListener(window, 'load', getLocation);
+            
+            function codeAddress() {
+                var address = document.getElementById('address').value;            
+                geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                       
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+			</script>
+			</head>
+<body>
 <form method = 'POST' enctype="multipart/form-data">
 	{% csrf_token %}
 	<table>
@@ -25,3 +96,38 @@
 	</table>
 	<input class="btn btn-dark" type="submit" value="제출하기">
 </form> 
+
+
+
+     <!-- Map Section Begin -->
+    <div class="map-section">
+        <div class="container-fluid">
+            <div class="row">
+                
+                 <div class="location-map">
+                                    <h4>위치 지도로 보기</h4>
+                                    {% comment %} <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107002.020096289!2d-96.80666618302782!3d33.06138629992991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c21da13c59513%3A0x62aa036489cd602b!2sPlano%2C+TX%2C+USA!5e0!3m2!1sen!2sbd!4v1558246953339!5m2!1sen!2sbd" allowfullscreen></iframe> {% endcomment %}
+                                    <div id="googleMap" style="width:650px;height:380px;">
+                                    </div>
+                                    <div id="panel">
+                                        <input id="address" type="textbox" value="seoul">
+                                        <input type="button" value="지도 검색" class="btn btn-danger" onclick="codeAddress()">
+                                    </div>
+
+            </div>
+            
+        </div>
+    </div>
+    <!-- Map Section End -->
+
+	<!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

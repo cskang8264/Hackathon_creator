@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
+from django.contrib.auth.decorators import login_required
 from .forms import Place_create, CommentForm
 from .models import Place, Comment
 
@@ -106,34 +107,81 @@ def place_delete(request, pk):
     return redirect('place')
 
     
-class PlaceLike(View):
-    def get(self, request, *args, **kwargs):
-        if not request.user.is_authenticated: #로그인확인
-            return HttpResponseForbidden()
-        else:
-            if 'place_id' in kwargs:
-                place_id = kwargs['place_id']
-                place = Place.objects.get(pk=place_id)
-                user = request.user
-                if user in place.like.all():
-                    place.like.remove(user)
-                else:
-                    place.like.add(user)
-            referer_url = request.META.get('HTTP_REFERER')
-            path = urlparse(referer_url).path
-            return HttpResponseRedirect(path)
+# class PlaceLike(View):
+#     def get(self, request, *args, **kwargs):
+#         if not request.user.is_authenticated: #로그인확인
+#             return HttpResponseForbidden()
+#         else:
+#             if 'place_id' in kwargs:
+#                 place = Place.objects.get(pk=place_id)
+#                 user = request.user
+#                 if user in place.like.all():
+#                     place.like.remove(user)
+#                 else:
+#                     place.like.add(user)
+#             referer_url = request.META.get('HTTP_REFERER')
+#             path = urlparse(referer_url).path
+#             return HttpResponseRedirect(path)
+            
 
-class PlaceFavorite(View):
-    def get(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return HttpResponseForbidden()
-        else:
-            if 'place_id' in kwargs:
-                place_id = kwargs['place_id']
-                place = Place.objects.get(pk=place_id)
-                user = request.user
-                if user in place.favorite.all():
-                    place.favorite.remove(user)
-                else:
-                    place.favorite.add(user)
-            return HttpResponseRedirect('/')
+# class PlaceFavorite(View):
+#     def get(self, request, *args, **kwargs):
+#         if not request.user.is_authenticated:
+#             return HttpResponseForbidden()
+#         else:
+#             if 'place_id' in kwargs:
+#                 place_id = kwargs['place_id']
+#                 place = Place.objects.get(pk=place_id)
+#                 user = request.user
+#                 if user in place.favorite.all():
+#                     place.favorite.remove(user)
+#                 else:
+#                     place.favorite.add(user)
+#             return HttpResponseRedirect('/')
+
+# POST요청에 대해 커스터마이징한 login_required를 사용한다
+
+# @login_required
+# def place_like_toggle(request, pk):
+#     # GET파라미터로 전달된 이동할 URL
+#     next_path = request.GET.get('next')
+#     # post_pk에 해당하는 Post객체
+#     place = get_object_or_404(Place, pk=pk)
+#     # 요청한 사용자
+#     user = request.user
+
+#     # 사용자의 like_posts목록에서 like_toggle할 Post가 있는지 확인
+#     filtered_like_posts = user.like_posts.filter(pk=pk)
+#     # 존재할경우, like_posts목록에서 해당 Post를 삭제
+#     if filtered_like_posts.exists():
+#         user.like_posts.remove(place)
+#     # 없을 경우, like_posts목록에 해당 Post를 추가
+#     else:
+#         user.like_posts.add(place)
+
+#     # 이동할 path가 존재할 경우 해당 위치로, 없을 경우 Post상세페이지로 이동
+#     if next_path:
+#         return redirect(next_path)
+#     return redirect('place_detail', place_pk=place_pk)
+
+def place_like(request, pk):
+    # 포스트 정보 받아옴
+    place = get_object_or_404(Place, pk=pk)
+
+    # 사용자가 로그인 된건지 확인
+    if not request.user.is_active:
+        # return redirect('place_detail', username=place.author, url=place.url)    
+        return redirect('place_detail', username=place.author, url=place.url)  
+    # 사용자 정보 받아옴
+    # user = User.objects.get(username=request.user)
+    user = request.user
+    # 좋아요에 사용자가 존재하면
+    if place.likes.filter(id = user.id).exists():
+        # 사용자를 지움
+        place.likes.remove(user)
+    else:
+        # 아니면 사용자를 추가
+        place.likes.add(user)
+    # 포스트로 리디렉션
+    # return redirect('place_detail', username=place.author, url=place.url)
+    return redirect('place')
