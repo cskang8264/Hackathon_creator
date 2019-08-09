@@ -5,46 +5,6 @@
     <h2>소품대여 디테일</h2>
 {% endblock %}
 
-    <!-- Hero Section End -->
-    <br><br>
-    {% if prop.image %}
-        <img src="{{ prop.image.url }}" class="card-img-top" alt="prop_image" style="magin: 3rem; width: 18rem;">
-    {% endif %}
-    <h1>{{ prop.title }}</h1>
-    <p>{{ prop.body }}</p>
-    <p>{{ prop.pub_date }}</p>
-
-    {% for comment in prop.comments.all %}
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h3>{{ comment.comment_text }}</h3>
-            </div>
-        </div>
-    {% endfor %}
-
-    <a href="{% url 'prop' %}">돌아가기잇</a>
-    <a href="{% url 'prop_edit' pk=prop.pk %}" class="btn btn-primary">수정</a>
-    <a href="{% url 'prop_delete' pk=prop.pk %}" class="btn btn-primary">삭제</a>
-
-    <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <input class="btn btn-primary" type="submit" value="Submit">
-    </form>
-
-<<<<<<< HEAD
-=======
-<a href="{% url 'prop' %}">돌아가기잇</a>
-{% if request.user.is_authenticated %}
-<a href="{% url 'prop_edit' pk=prop.pk %}" class="btn btn-primary">수정</a>
-<a href="{% url 'prop_delete' pk=prop.pk %}" class="btn btn-primary">삭제</a>
-{% endif %}
-
- 
->>>>>>> fa783151a9f4bae3c3038a5d899e16ea0911d045
-
-
-
 {% block content %}
     <!-- Single Property Section Begin -->
     <div class="single-property">
@@ -171,10 +131,10 @@
                                     <div class="t-details">
                                         <div class="register-id">
                                             <p>User ID: <span>{{ comment.comment_text }}</span>
-                                                <a href="{% url 'pr_comment_edit' comment.id %}" role="button"
+                                                <a href="{% url 'prop_comment_edit' comment.id %}" role="button"
                                                    class="btn-outline-primary">Edit</a>
                                                 |
-                                                <a href="{% url 'pr_comment_del' comment.id %}" role="button"
+                                                <a href="{% url 'prop_comment_del' comment.id %}" role="button"
                                                    class="btn-outline-danger">Del</a>
                                             </p>
                                         </div>

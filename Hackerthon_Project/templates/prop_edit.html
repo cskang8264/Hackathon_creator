@@ -1,4 +1,10 @@
+{% extends 'index.html' %}
 
+{% block header%}
+<h2>Post 소품 구하기</h2>
+{% endblock %}
+
+{% block content %}
  {% for prop in props.all %}
     <div class="card">
       <h5 class="card-header">{{ prop.title }}</h5>
@@ -9,8 +15,9 @@
         <form method="POST" enctype="multipart/form-data">
          {% csrf_token %}
             {{form.as_table}}
-        <button type = "submit" class="btn btn-primary">저어장</button>
+        <button type = "submit" class="btn btn-primary">저장</button>
         </form>
       </div>
     </div>
   {% endfor %}
+{% endblock %} 

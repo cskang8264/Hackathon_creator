@@ -142,3 +142,4 @@ def prop_comment_del(request, pk):
     comment.delete()
     return redirect("prop_detail", comment.prop_id.id)
    
+    
