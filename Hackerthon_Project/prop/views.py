@@ -3,6 +3,7 @@ from django.utils import timezone
 
 from .forms import Prop_create, CommentForm
 from .models import Prop, Comment
+from user.models import User
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -59,6 +60,9 @@ def prop_detail(request, prop_id):
         return render(request, "prop_detail.html", {"prop":prop, "form":form})
 def summary(self):
     return self.body[:100]
+
+
+    
 @login_required
 def prop_create(request, prop=None):
     if request.method == 'POST':
@@ -66,6 +70,7 @@ def prop_create(request, prop=None):
         if form.is_valid():
             prop = form.save(commit=False)
             prop.pub_date = timezone.now()
+            prop.user_id = request.user.id
             prop.save()
             form.save_m2m()
             return redirect('prop')
@@ -96,11 +101,24 @@ def prop_create(request, prop=None):
 @login_required
 def prop_edit(request, pk):
     prop = get_object_or_404(Prop, pk=pk)
-    return prop_create(request, prop)
+    current_user_id = request.user.id
+    if prop.user.id == current_user_id:
+       
+        return prop_create(request, prop)
+    else:
+        return render(request, 'warning.html')
+   
+    
 
 # Delete
 @login_required
 def prop_delete(request, pk):
     prop = get_object_or_404(Prop, pk=pk)
-    prop.delete()
-    return redirect('prop')
+    current_user_id = request.user.id
+   
+    if prop.user.id == current_user_id:
+        prop.delete()
+        return redirect('prop')
+    else:
+        return render(request, 'warning.html')
+   

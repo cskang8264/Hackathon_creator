@@ -3,6 +3,7 @@ from django.utils import timezone
 
 from .forms import Place_create, CommentForm
 from .models import Place, Comment
+from user.models import User
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -66,6 +67,7 @@ def place_create(request, place=None):
         if form.is_valid():
             place = form.save(commit=False)
             place.pub_date = timezone.now()
+            place.user_id = request.user.id
             place.save()
             form.save_m2m()
             return redirect('place')
@@ -96,11 +98,21 @@ def place_create(request, place=None):
 @login_required
 def place_edit(request, pk):
     place = get_object_or_404(Place, pk=pk)
-    return place_create(request, place)
+    current_user_id = request.user.id
+    if place.user.id == current_user_id:
+       
+        return place_create(request, place)
+    else:
+        return render(request, 'warning.html')
 
 # Delete
 @login_required
 def place_delete(request, pk):
     place = get_object_or_404(Place, pk=pk)
-    place.delete()
-    return redirect('place')
+    current_user_id = request.user.id
+
+    if place.user.id == current_user_id:
+        place.delete()
+        return redirect('place')
+    else:
+        return render(request, 'warning.html')

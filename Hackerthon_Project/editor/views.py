@@ -3,7 +3,7 @@ from django.utils import timezone
 
 from .forms import Editor_create, CommentForm
 from .models import Editor, Comment
-
+from user.models import User
 from django.contrib.auth.decorators import login_required
 
 
@@ -68,6 +68,7 @@ def editor_create(request, editor=None):
         if form.is_valid():
             editor = form.save(commit=False)
             editor.pub_date = timezone.now()
+            editor.user_id = request.user.id
             editor.save()
             form.save_m2m()
             return redirect('editor')
@@ -98,11 +99,21 @@ def editor_create(request, editor=None):
 @login_required
 def editor_edit(request, pk):
     editor = get_object_or_404(Editor, pk=pk)
-    return editor_create(request, editor)
+    current_user_id = request.user.id
+    if editor.user.id == current_user_id:
+       
+        return editor_create(request, editor)
+    else:
+        return render(request, 'warning.html')
 
 # Delete
 @login_required
 def editor_delete(request, pk):
     editor = get_object_or_404(Editor, pk=pk)
-    editor.delete()
-    return redirect('editor')
+    current_user_id = request.user.id
+   
+    if editor.user.id == current_user_id:
+        editor.delete()
+        return redirect('editor')
+    else:
+        return render(request, 'warning.html')
