@@ -5,10 +5,11 @@
     <h2>소품대여 디테일</h2>
 {% endblock %}
 
+<<<<<<< HEAD
     <!-- Hero Section End -->
     <br><br>
     {% if prop.image %}
-        <img src="{{ prop.image.url }}" class="card-img-top" alt="prop_image" style="magin: 3rem; width: 18rem;">
+        <img src="{{ prop.image.url }}" class="card-img-top" alt="prop_image" style="margin: 3rem; width: 18rem;">
     {% endif %}
     <h1>{{ prop.title }}</h1>
     <p>{{ prop.body }}</p>
@@ -64,6 +65,8 @@
 
 
 
+=======
+>>>>>>> b05e31c10f711789e2e2b437fd028530971be549
 {% block content %}
     <!-- Single Property Section Begin -->
     <div class="single-property">
@@ -190,10 +193,10 @@
                                     <div class="t-details">
                                         <div class="register-id">
                                             <p>User ID: <span>{{ comment.comment_text }}</span>
-                                                <a href="{% url 'pr_comment_edit' comment.id %}" role="button"
+                                                <a href="{% url 'prop_comment_edit' comment.id %}" role="button"
                                                    class="btn-outline-primary">Edit</a>
                                                 |
-                                                <a href="{% url 'pr_comment_del' comment.id %}" role="button"
+                                                <a href="{% url 'prop_comment_del' comment.id %}" role="button"
                                                    class="btn-outline-danger">Del</a>
                                             </p>
                                         </div>

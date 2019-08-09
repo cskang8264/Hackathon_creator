@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html lang="en">
+<script lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-          rel="stylesheet">
+        rel="stylesheet">
 
     <!-- jQuery 1.8 or later, 33 KB -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -34,180 +34,183 @@
 </head>
 
 <body>
-<!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
-<!-- Header Section Begin -->
-<header class="header-section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="logo">
-                    <a href="{% url 'mainpage' %}">
-                        <img src="{% static 'img/logo.png' %}" alt="">
-                    </a>
-                </div>
-                <ul class="main-menu">
-                    <li><a href="{% url 'mainpage' %}">Home</a></li>
-                    <li class=>
-                        {% if not request.user.is_authenticated %}
-                        <a href="/user/create/">가입하기</a>
-                        {% endif %}
-                    </li>
-                    <li class=>
-                        {% if request.user.is_authenticated %}
-                        <a href="/user/logout/">로그아웃</a>
-                        <a href="{% url 'mypage' user.id %}">내정보</a>
-                        {% else %}
-                        <a href="/user/login/">로그인</a>
-                        {% endif %}
-                        {% comment %}
-                    <li><a href="#">소품구하기</a></li>
-                    {% endcomment %}
-                    <li><a href="{% url 'editor' %}">편집자구하기</a></li>
-                    <li><a href="{% url 'place' %}">장소구하기</a></li>
-                    {% comment %}
-                    <li><a href="./contact.html">편집강의듣기</a></li>
-                    {% endcomment %}
-                    <li><a href="{% url 'prop' %}">소품구하기</a></li>
-                    {% comment %}
-                    <li><a href="#">편집자구하기</a></li>
-                    {% endcomment %}
-                    {% comment %}
-                    <li><a href="./blog.html">장소구하기</a></li>
-                    {% endcomment %}
-                    <li><a href="{% url 'learn:learn' %}">편집강의듣기</a></li>
-
-                    <li class="top-social">
-
-                    </li>
-                </ul>
-                <div id="mobile-menu-wrap"></div>
-            </div>
-        </div>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
     </div>
-</header>
-<!-- Header Section End -->
-<!-- Hero Section Begin -->
-<section class="hero-section home-page set-bg" data-setbg="{% static 'img/bg.jpg' %}">
-    <div class="container hero-text text-white">
-        {% block header %}
-        <h2>방송의 모든것 </h2>
-        <h1>LikeLion</h1>
-        {% endblock %}
-    </div>
-</section>
-<!-- Hero Section End -->
-{% block content %}{% endblock %}
-<!-- Footer Section Begin -->
-<footer class="footer-section">
-    <!-- Rooms Pic Section Begin-->
-    <div class="room-pic">
+    <!-- Header Section Begin -->
+    <header class="header-section">
         <div class="container-fluid">
-            <div class="row sp-40">
-            </div>
-        </div>
-    </div>
-    <!-- Rooms Pic Section End -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center sp-60">
-                <img src="{% static 'img/only-logo.png' %}" alt="">
-            </div>
-        </div>
-        <div class="row p-37">
-            <div class="col-lg-4">
-                <div class="about-footer">
-                    <h5>About Homes</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend tristique venenatis.
-                        Maecenas a rutrum tellus nam vel semper nibh.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo">
+                        <a href="{% url 'mainpage' %}">
+                            <img src="{% static 'img/logo.png' %}" alt="">
+                        </a>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="footer-blog">
-                    <h5>Latest Blog Posts</h5>
-
-                    <div class="single-blog">
-                        <div class="lt-side">
-                            <img src="{% static 'img/footer-blog-1.jpg' %}" alt="">
-                        </div>
-                        <div class="rt-side">
-                            <h6>How to find the perfect area for<br> your next house.</h6>
-                            <div class="blog-time">
-                                <i class="flaticon-clock"></i>
-                                <span>5 min</span>
-                            </div>
-                            <a href="#" class="read-more">
-                                <i class="flaticon-right-arrow-1"></i>
-                                <span>Read More</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="single-blog">
-                        <div class="lt-side">
-                            <img src="{% static 'img/footer-blog-2.jpg' %}" alt="">
-                        </div>
-                        <div class="rt-side">
-                            <h6>How to find the perfect area for<br> your next house.</h6>
-                            <div class="blog-time">
-                                <i class="flaticon-clock"></i>
-                                <span>5 min</span>
-                            </div>
-                            <a href="#" class="read-more">
-                                <i class="flaticon-right-arrow-1"></i>
-                                <span>Read More</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="footer-address">
-                    <h5>Get In Touch</h5>
-                    <ul>
-                        <li><i class="flaticon-placeholder"></i><span>132 Liberty Streetelit, Plano, Texas</span>
+                    <ul class="main-menu">
+                        <li><a href="{% url 'mainpage' %}">Home</a></li>
+                        <li class=>
+                            {% if not request.user.is_authenticated %}
+                            <a href="/user/create/">가입하기</a>
+                            {% endif %}
                         </li>
-                        <li><i class="flaticon-envelope"></i><span>hello@home.com</span></li>
-                        <li><i class="flaticon-smartphone"></i><span>214-805-4428</span></li>
+                        <li class=>
+                            {% if request.user.is_authenticated %}
+                            <a href="/user/logout/">로그아웃</a>
+                            <a href="{% url 'mypage' user.id %}">내정보</a>
+                            {% else %}
+                            <a href="/user/login/">로그인</a>
+                            {% endif %}
+                            {% comment %}
+                        <li><a href="#">소품구하기</a></li>
+                        {% endcomment %}
+                        <li><a href="{% url 'editor' %}">편집자구하기</a></li>
+                        <li><a href="{% url 'place' %}">장소구하기</a></li>
+                        {% comment %}
+                        <li><a href="./contact.html">편집강의듣기</a></li>
+                        {% endcomment %}
+                        <li><a href="{% url 'prop' %}">소품구하기</a></li>
+                        {% comment %}
+                        <li><a href="#">편집자구하기</a></li>
+                        {% endcomment %}
+                        {% comment %}
+                        <li><a href="./blog.html">장소구하기</a></li>
+                        {% endcomment %}
+                        <li><a href="{% url 'learn:learn' %}">편집강의듣기</a></li>
+
+                        <li class="top-social">
+
+                        </li>
                     </ul>
-                    <p>Monday – Friday: 9 am – 5 pm</p>
-                    <p>Saturday: 9 am – 1pm</p>
+                    <div id="mobile-menu-wrap"></div>
                 </div>
             </div>
         </div>
-
-        <div class="row p-20">
-            <div class="col-lg-12 text-center">
-                <div class="copyright">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+    <section class="hero-section home-page set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+        <div class="container hero-text text-white">
+            {% block header %}
+            <h2>방송의 모든것 </h2>
+            <h1>LikeLion</h1>
+            {% endblock %}
+        </div>
+    </section>
+    <!-- Hero Section End -->
+    {% block content %}{% endblock %}
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <!-- Rooms Pic Section Begin-->
+        <div class="room-pic">
+            <div class="container-fluid">
+                <div class="row sp-40">
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-<!-- Footer Section End -->
+        <!-- Rooms Pic Section End -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center sp-60">
+                    <img src="{% static 'img/only-logo.png' %}" alt="">
+                </div>
+            </div>
+            <div class="row p-37">
+                <div class="col-lg-4">
+                    <div class="about-footer">
+                        <h5>About Homes</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend tristique venenatis.
+                            Maecenas a rutrum tellus nam vel semper nibh.</p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-blog">
+                        <h5>Latest Blog Posts</h5>
 
-<!-- Js Plugins -->
-<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
-<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'js/jquery-ui.min.js' %}"></script>
-<script src="{% static 'js/jquery.slicknav.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
+                        <div class="single-blog">
+                            <div class="lt-side">
+                                <img src="{% static 'img/footer-blog-1.jpg' %}" alt="">
+                            </div>
+                            <div class="rt-side">
+                                <h6>How to find the perfect area for<br> your next house.</h6>
+                                <div class="blog-time">
+                                    <i class="flaticon-clock"></i>
+                                    <span>5 min</span>
+                                </div>
+                                <a href="#" class="read-more">
+                                    <i class="flaticon-right-arrow-1"></i>
+                                    <span>Read More</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="single-blog">
+                            <div class="lt-side">
+                                <img src="{% static 'img/footer-blog-2.jpg' %}" alt="">
+                            </div>
+                            <div class="rt-side">
+                                <h6>How to find the perfect area for<br> your next house.</h6>
+                                <div class="blog-time">
+                                    <i class="flaticon-clock"></i>
+                                    <span>5 min</span>
+                                </div>
+                                <a href="#" class="read-more">
+                                    <i class="flaticon-right-arrow-1"></i>
+                                    <span>Read More</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-address">
+                        <h5>Get In Touch</h5>
+                        <ul>
+                            <li><i class="flaticon-placeholder"></i><span>132 Liberty Streetelit, Plano, Texas</span>
+                            </li>
+                            <li><i class="flaticon-envelope"></i><span>hello@home.com</span></li>
+                            <li><i class="flaticon-smartphone"></i><span>214-805-4428</span></li>
+                        </ul>
+                        <p>Monday – Friday: 9 am – 5 pm</p>
+                        <p>Saturday: 9 am – 1pm</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row p-20">
+                <div class="col-lg-12 text-center">
+                    <div class="copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        All rights reserved | This template is made with <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by
+                        <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
-</html>
+</script>

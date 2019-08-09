@@ -117,3 +117,22 @@ def editor_delete(request, pk):
         return redirect('editor')
     else:
         return render(request, 'warning.html')
+
+# Comment edit
+def editor_comment_edit(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        comment = form.save(commit=False)
+        comment.comment_text = form.cleaned_data["comment_text"]
+        comment.save()
+        return redirect("editor_detail", comment.editor_id.id)
+    else:
+        form = CommentForm(instance=comment)
+        return render(request, "editor_new.html", {'form':form})
+
+# Comment del
+def editor_comment_del(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect("editor_detail", comment.editor_id.id)
