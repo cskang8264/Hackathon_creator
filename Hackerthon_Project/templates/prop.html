@@ -190,9 +190,11 @@
                     {% if prop.image %}
                         <div class="room-img set-bg" data-setbg="{{ prop.image.url }}">
                     {% endif %}
-                            <a href="#" class="room-content">
+                    <!-- like button -->
+                            <a href="{% url 'like '%}" class="room-content">
                                 <i class="flaticon-heart"></i>
                             </a>
+                           
                         </div>
                         <div class="room-text">
                             <div class="room-details">

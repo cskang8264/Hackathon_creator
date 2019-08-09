@@ -1,10 +1,18 @@
+{% extends 'index.html'%}
 {% load static %}
 
 
-{% static 'user/img/kakao_login.png' as kakao_button %}
-{% static 'user/img/kakao_login_ov.png' as kakao_button_hover %}
+{% block content %}
+
 {% static 'user/img/naver_login_green.png' as naver_button %}
 {% static 'user/img/naver_login_white.png' as naver_button_hover %}
+
+
+
+
+
+
+
 
 <title>로그인</title>
 
@@ -47,11 +55,19 @@
 
         {% if user.is_active %}
         <!-- 로그인된 상태에서 계정의 이름을 눌렀을 때 로그인 페이지를 보여줄 필요가 없으므로 링크를 지움 -->
-        <li><a href="#"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
-        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+        <li><a href="#"> <span class="glyphicon glyphicon-heart"></span>로그인 되셨습니다.</a></li>
+        <li><a href="/user/sociallogout/">네이버 로그아웃</a></li>
+
+        
         {% else %}
-        <li><a href="{% url 'account_login' %}"> <span class="glyphicon glyphicon-user"></span> Login</a></li>
-        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+       
+        <a href="/user/socialnaver/login/?process=login">
+            <img src="{{ naver_button }}"
+                 onmouseover="this.src='{{ naver_button_hover }}'"
+                 onmouseleave="this.src='{{ naver_button }}'"height="34">
+        </a>
+        
+        <a href="{% url 'admin:index' %}"> <button class="btn btn-primary btn-large" type="button" >관리자계정으로 로그인</button></a>
         {% endif %}
 
     </div>
@@ -83,3 +99,6 @@
         </form>
     </div>
 </div>
+
+
+{% endblock %}
