@@ -3,6 +3,8 @@ from django.utils import timezone
 
 from .forms import Place_create, CommentForm
 from .models import Place, Comment
+from user.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def place(request):
@@ -30,6 +32,7 @@ def place(request):
 def place_new(request):
     return render(request, 'place_new.html')
 
+@login_required
 def create(request):
     place = Place()
     place.title = request.GET['title']
@@ -41,7 +44,7 @@ def create(request):
 # def place_detail(request, place_id):
 #     place_detail = get_object_or_404(Place, pk=place_id)
 #     return render(request, 'place_detail.html', {'place': place_detail})
-
+@login_required
 def place_detail(request, place_id):
     place = get_object_or_404(Place, id=place_id)
     if request.method == "POST":
@@ -57,13 +60,14 @@ def place_detail(request, place_id):
         return render(request, "place_detail.html", {"place":place, "form":form})
 def summary(self):
     return self.body[:100]
-
+@login_required
 def place_create(request, place=None):
     if request.method == 'POST':
         form = Place_create(request.POST, request.FILES, instance=place)
         if form.is_valid():
             place = form.save(commit=False)
             place.pub_date = timezone.now()
+            place.user_id = request.user.id
             place.save()
             form.save_m2m()
             return redirect('place')
@@ -91,12 +95,24 @@ def place_create(request, place=None):
 #         return render(request, 'place_new.html', {'form': form})
 
 # Edit
+@login_required
 def place_edit(request, pk):
     place = get_object_or_404(Place, pk=pk)
-    return place_create(request, place)
+    current_user_id = request.user.id
+    if place.user.id == current_user_id:
+       
+        return place_create(request, place)
+    else:
+        return render(request, 'warning.html')
 
 # Delete
+@login_required
 def place_delete(request, pk):
     place = get_object_or_404(Place, pk=pk)
-    place.delete()
-    return redirect('place')
+    current_user_id = request.user.id
+
+    if place.user.id == current_user_id:
+        place.delete()
+        return redirect('place')
+    else:
+        return render(request, 'warning.html')

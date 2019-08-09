@@ -40,11 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'theme',
     'user',
+    'place',
+    'editor',
+    'prop',
 
     #learn_edit
     'learn_edit',
-
-    'place',
   
     'django.contrib.sites',  # allauth
 
@@ -98,9 +99,9 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mytest',
-        'USER' : 'root',
-        'PASSWORD' : '714915',
+        'NAME': 'mydb',
+        'USER' : 'test',
+        'PASSWORD' : 'kang5265',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
@@ -152,8 +153,10 @@ STATICFILES_DIRS = (
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'place')
-MEDIA_URL = '/place/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'place')
+# MEDIA_URL = '/place/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/')
+MEDIA_URL = '/'
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -163,7 +166,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 2
+SITE_ID = 5
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -190,7 +193,7 @@ NAVER_CLIENT_ID = 'GJ0RAhabU5o7M7JePAhk'
 NAVER_SECRET_KEY = 'S9azXOInzG'
 
 KAKAO_CLIENT_ID = '0288b717f3c55039c12153835684a040'
-NAVER_SECRET_KEY = 'none'
+_SECRET_KEY = 'none'
 
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
