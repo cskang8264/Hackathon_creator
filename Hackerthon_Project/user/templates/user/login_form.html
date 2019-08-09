@@ -1,8 +1,8 @@
-{% extends 'index.html'%}
+{% extends 'layout.html'%}
 {% load static %}
 
 
-{% block content %}
+{% block content2 %}
 
 {% static 'user/img/naver_login_green.png' as naver_button %}
 {% static 'user/img/naver_login_white.png' as naver_button_hover %}
@@ -19,6 +19,16 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
+    @font-face {
+        font-family: 'BBTreeGR';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    #login_section{
+        font-family: 'BBTreeGR';
+    }
+
     .registration {
         width: 360px;
         margin: 0 auto;
@@ -47,7 +57,7 @@
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-<div class="panel panel-default registration">
+<div class="panel panel-default registration" id="login_section">
     <div class="panel-heading">
         소셜로그인
     </div>
@@ -58,25 +68,25 @@
         <li><a href="#"> <span class="glyphicon glyphicon-heart"></span>로그인 되셨습니다.</a></li>
         <li><a href="/user/sociallogout/">네이버 로그아웃</a></li>
 
-        
+
         {% else %}
-       
+
         <a href="/user/socialnaver/login/?process=login">
-            <img src="{{ naver_button }}"
-                 onmouseover="this.src='{{ naver_button_hover }}'"
-                 onmouseleave="this.src='{{ naver_button }}'"height="34">
+            <img src="{{ naver_button }}" onmouseover="this.src='{{ naver_button_hover }}'"
+                onmouseleave="this.src='{{ naver_button }}'" height="34">
         </a>
-        
-        <a href="{% url 'admin:index' %}"> <button class="btn btn-primary btn-large" type="button" >관리자계정으로 로그인</button></a>
+
+        <a href="{% url 'admin:index' %}"> <button class="btn btn-primary btn-large" type="button">관리자계정으로
+                로그인</button></a>
         {% endif %}
 
     </div>
-  
-</div>
-</div>
 
+</div>
+<br>
+<br>
 
-<div class="panel panel-default registration">
+<div class="panel panel-default registration" id="login_section">
     <div class="panel-heading">
         로그인
     </div>

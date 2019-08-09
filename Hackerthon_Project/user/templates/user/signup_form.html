@@ -9,11 +9,24 @@
 <title>회원가입</title>
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 <style>
+    @font-face {
+        font-family: 'BBTreeGR';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    #signup_section{
+        font-family: 'BBTreeGR';
+        height: 100%;
+        margin: 5% 0;
+    }
+
     .registration {
-        width: 360px;
-        margin: 0 auto;
+        width: 100px;
+        margin: 5% 0;
     }
 
     p {
@@ -34,14 +47,11 @@
     }
 </style>
 
-
-
-
-<div class="panel panel-default registration">
+<div class="panel panel-default registration" id="signup_section">
     <div class="panel-heading">
         회원가입
     </div>
-    <div class="panel-body">
+    <div class="panel-body" id="signup">
         <form action="{% url 'signup' %}" method="post">
             {% csrf_token %}
             {% for field in form %}

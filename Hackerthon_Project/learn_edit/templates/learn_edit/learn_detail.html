@@ -63,8 +63,10 @@
             <!--image-->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="fotorama">
-                        <a href="{{ blog.link }}"></a>
+                    <div class="fotorama" data-allowfullscreen="native" data-fit="cover">
+                        <img src="{% static 'img/SampleVideo.png' %}">
+                        <a href="{{ blog.link }}">link1</a>
+                        <a href="{{ blog.link2 }}">link2</a>
                     </div>
                 </div>
             </div>

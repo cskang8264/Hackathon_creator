@@ -114,11 +114,31 @@ def prop_edit(request, pk):
 @login_required
 def prop_delete(request, pk):
     prop = get_object_or_404(Prop, pk=pk)
+    prop.delete()
+    return redirect('prop')
     current_user_id = request.user.id
-   
     if prop.user.id == current_user_id:
         prop.delete()
         return redirect('prop')
     else:
         return render(request, 'warning.html')
+
+# Comment edit
+def prop_comment_edit(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        comment = form.save(commit=False)
+        comment.comment_text = form.cleaned_data["comment_text"]
+        comment.save()
+        return redirect("prop_detail", comment.prop_id.id)
+    else:
+        form = CommentForm(instance=comment)
+        return render(request, "prop_new.html", {'form':form})
+
+# Comment del
+def prop_comment_del(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect("prop_detail", comment.prop_id.id)
    
