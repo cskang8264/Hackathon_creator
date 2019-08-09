@@ -8,7 +8,6 @@
 
 {% block content %}
     <!-- Filter Search Section Begin -->
-    
     <div class="filter-search">
         <div class="container ">
             <div class="row">
@@ -110,10 +109,13 @@
  
     
     <a href="{% url 'place_create' %}"><button type="button" class="btn btn-danger">글등록</button></a>
-      <section class="hotel-rooms spad">
+    <!--반복내용-->
+    
+    <section class="hotel-rooms spad">
         <div class="container">
             <div class="row">
-                     {% for place in places.all %}
+                <!--여기서 부터 반복 시작-->
+                {% for place in places.all %}
                 <div class="col-lg-4 col-md-6">
                     <div class="room-items">
                     {% if place.image %}
@@ -141,6 +143,7 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div> 
      {% comment %} {% for place in places.all %}
             <div class="card-group">
             <div class="card">

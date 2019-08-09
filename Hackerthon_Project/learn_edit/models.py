@@ -18,7 +18,7 @@ class Blog(models.Model):
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="contents")
-    content = models.CharField(" ", max_length=100)
+    content = models.CharField(max_length=100)
 
     def __str__(self):
         return self.content
