@@ -8,8 +8,8 @@ class Editor(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True)
 
-def __str__(self):
-    return self.title
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):
