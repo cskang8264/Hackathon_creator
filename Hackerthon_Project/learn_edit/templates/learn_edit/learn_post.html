@@ -1,13 +1,17 @@
 {% extends 'index.html' %}
 
+{% block header%}
+<h2>Post 편집 배우기</h2>
+{% endblock %}
+
 {% block content %}
     <section class="hotel-rooms spad">
         <div class="container">
             <form method="POST">
                 {% csrf_token %}
                 <table>
-                    {{ form.as_table }}
-                </table>
+		            {{form.as_table}}
+	            </table>
                 <input type="submit" value="submit">
             </form>
         </div>

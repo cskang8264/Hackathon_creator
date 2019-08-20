@@ -44,6 +44,8 @@ urlpatterns = [
     path('place/<int:pk>/place_edit/', place.views.place_edit, name='place_edit'),
     path('place/<int:pk>/place_delete/', place.views.place_delete, name='place_delete'),
     path('place/create/', place.views.create, name='p_create'),
+    path('place/comment_edit/<int:pk>/', place.views.place_comment_edit, name="place_comment_edit"),
+    path('place/comment_del/<int:pk>/', place.views.place_comment_del, name='place_comment_del'),
     #편집자구하기
     path('editor/editor/', editor.views.editor, name='editor'),
     path('editor/editor_new/', editor.views.editor_new, name='editor_new'),
@@ -52,6 +54,8 @@ urlpatterns = [
     path('editor/<int:pk>/editor_edit/', editor.views.editor_edit, name='editor_edit'),
     path('editor/<int:pk>/editor_delete/', editor.views.editor_delete, name='editor_delete'),
     path('editor/create/', editor.views.create, name='e_create'),
+    path('editor/comment_edit/<int:pk>/', editor.views.editor_comment_edit, name="editor_comment_edit"),
+    path('editor/comment_del/<int:pk>/',editor.views.editor_comment_del, name='editor_comment_del'),
     #소품구하기
     path('prop/prop/', prop.views.prop, name='prop'),
     path('prop/prop_new/', prop.views.prop_new, name='prop_new'),
@@ -60,6 +64,8 @@ urlpatterns = [
     path('prop/<int:pk>/prop_edit/', prop.views.prop_edit, name='prop_edit'),
     path('prop/<int:pk>/prop_delete/', prop.views.prop_delete, name='prop_delete'),
     path('prop/create/', prop.views.create, name='pr_create'),
+    path('prop/comment_edit/<int:pk>/', prop.views.prop_comment_edit, name="prop_comment_edit"),
+    path('prop/comment_del/<int:pk>/', prop.views.prop_comment_del, name='prop_comment_del'),
 
     #좋아요
     # path('place/like/<int:place_id>/', place.views.PlaceLike, name='like'),

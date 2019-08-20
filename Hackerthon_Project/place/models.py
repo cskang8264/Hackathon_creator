@@ -1,10 +1,18 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import User
 from django.contrib import auth
 from Project import settings
 
 class Place(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user', default=1)
+=======
+from django.conf import settings
+
+
+class Place(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+>>>>>>> b05e31c10f711789e2e2b437fd028530971be549
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('data published')
     body = models.TextField()

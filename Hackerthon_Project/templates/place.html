@@ -1,8 +1,10 @@
  {% extends "index.html" %}
  {% load staticfiles %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block header %}
+<h2>방송의 모든것</h2>
+<h1>장소 구하기</h1>
+{% endblock %}
 
 <head>
     <meta charset="UTF-8">
@@ -172,11 +174,15 @@
  
     
     <a href="{% url 'place_create' %}"><button type="button" class="btn btn-danger">글등록</button></a>
-      <section class="hotel-rooms spad">
+    <!--반복내용-->
+    
+    <section class="hotel-rooms spad">
         <div class="container">
             <div class="row">
           
-                     {% for place in places.all %}
+               
+                <!--여기서 부터 반복 시작-->
+                {% for place in places.all %}
                 <div class="col-lg-4 col-md-6">
                     <div class="room-items">
                     {% if place.image %}
@@ -221,6 +227,7 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div> 
      {% comment %} {% for place in places.all %}
             <div class="card-group">
             <div class="card">
@@ -273,6 +280,7 @@
 </div>
 </div>
 </section>
+<<<<<<< HEAD
 
 
 
@@ -379,3 +387,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </body>
 
 </html>
+=======
+{% endblock %}
+>>>>>>> b05e31c10f711789e2e2b437fd028530971be549

@@ -1,6 +1,9 @@
 from django.db import models
+from user.models import User
+from django.conf import settings
 
 class Prop(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('data published')
     body = models.TextField()

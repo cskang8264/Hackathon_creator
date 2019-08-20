@@ -1,12 +1,15 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
 class Blog(models.Model):
-    title = models.CharField('제목:',max_length=40, null=False)
-    content = models.TextField('내용:', null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=40, null=False)
+    content = models.TextField(null=True)
     create_at = models.DateTimeField(auto_now_add=True)
-    link = models.CharField('링크주소:', max_length=100, null=False)
+    link = models.CharField(max_length=100, null=True, blank=True)
+    link2 = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -15,13 +18,7 @@ class Blog(models.Model):
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="contents")
-    content = models.CharField(" ", max_length=100)
+    content = models.CharField(max_length=100)
 
     def __str__(self):
         return self.content
-
-class Hastag(models.Model):
-    name = models.CharField(max_length = 50)
-
-    def __str__(self):
-        return self.name

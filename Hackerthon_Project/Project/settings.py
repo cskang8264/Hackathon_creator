@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
     #learn_edit
     'learn_edit',
-
+  
     'django.contrib.sites',  # allauth
 
     #allauth
@@ -55,9 +55,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.naver',
-
-
-
     
 ]
 
@@ -104,9 +101,9 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
+        'NAME': 'mytest1',
         'USER' : 'root',
-        'PASSWORD' : 'lsh1256',
+        'PASSWORD' : '714915',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
@@ -198,7 +195,7 @@ NAVER_CLIENT_ID = 'GJ0RAhabU5o7M7JePAhk'
 NAVER_SECRET_KEY = 'S9azXOInzG'
 
 KAKAO_CLIENT_ID = '0288b717f3c55039c12153835684a040'
-NAVER_SECRET_KEY = 'none'
+_SECRET_KEY = 'none'
 
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None

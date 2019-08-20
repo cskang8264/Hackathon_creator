@@ -3,6 +3,9 @@ from django.utils import timezone
 
 from .forms import Editor_create, CommentForm
 from .models import Editor, Comment
+from user.models import User
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def editor(request):
@@ -26,10 +29,10 @@ def editor(request):
     #      })
     # else:
         return render(request, 'editor.html', {'editors':editors})
-
+@login_required
 def editor_new(request):
     return render(request, 'editor_new.html')
-
+@login_required
 def create(request):
     editor = Editor()
     editor.title = request.GET['title']
@@ -41,7 +44,7 @@ def create(request):
 # def place_detail(request, place_id):
 #     place_detail = get_object_or_404(Place, pk=place_id)
 #     return render(request, 'place_detail.html', {'place': place_detail})
-
+@login_required
 def editor_detail(request, editor_id):
     editor = get_object_or_404(Editor, id=editor_id)
     if request.method == "POST":
@@ -58,12 +61,14 @@ def editor_detail(request, editor_id):
 def summary(self):
     return self.body[:100]
 
+@login_required
 def editor_create(request, editor=None):
     if request.method == 'POST':
         form = Editor_create(request.POST, request.FILES, instance=editor)
         if form.is_valid():
             editor = form.save(commit=False)
             editor.pub_date = timezone.now()
+            editor.user_id = request.user.id
             editor.save()
             form.save_m2m()
             return redirect('editor')
@@ -91,12 +96,43 @@ def editor_create(request, editor=None):
 #         return render(request, 'place_new.html', {'form': form})
 
 # Edit
+@login_required
 def editor_edit(request, pk):
     editor = get_object_or_404(Editor, pk=pk)
-    return editor_create(request, editor)
+    current_user_id = request.user.id
+    if editor.user.id == current_user_id:
+       
+        return editor_create(request, editor)
+    else:
+        return render(request, 'warning.html')
 
 # Delete
+@login_required
 def editor_delete(request, pk):
     editor = get_object_or_404(Editor, pk=pk)
-    editor.delete()
-    return redirect('editor')
+    current_user_id = request.user.id
+   
+    if editor.user.id == current_user_id:
+        editor.delete()
+        return redirect('editor')
+    else:
+        return render(request, 'warning.html')
+
+# Comment edit
+def editor_comment_edit(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        comment = form.save(commit=False)
+        comment.comment_text = form.cleaned_data["comment_text"]
+        comment.save()
+        return redirect("editor_detail", comment.editor_id.id)
+    else:
+        form = CommentForm(instance=comment)
+        return render(request, "editor_new.html", {'form':form})
+
+# Comment del
+def editor_comment_del(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect("editor_detail", comment.editor_id.id)
