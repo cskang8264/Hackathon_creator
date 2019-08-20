@@ -1,17 +1,43 @@
 from django.db import models
+<<<<<<< HEAD
+from django.contrib.auth.models import User
+from django.contrib import auth
+from Project import settings
+
+class Place(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user', default=1)
+=======
 from django.conf import settings
 
 
 class Place(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+>>>>>>> b05e31c10f711789e2e2b437fd028530971be549
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('data published')
     body = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True)
+    time = models.CharField(max_length=20)
 
-def __str__(self):
-    return self.title
+    # lon = models.DecimalField(max_digits=8, decimal_places=3)
+    # lat = models.DecimalField(max_digits=8, decimal_places=3)
 
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
+    
+    @property
+    def total_likes(self):
+        return self.likes.count()
+    # like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_post', blank=True)
+    # favorite = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='favorite_post', blank=True)
+   
+    # def __init__(request, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+# def get_absolute_url(sel):
+#     return reverse('place_datail', args=[self.id])
 
 class Comment(models.Model):
     place_id = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="comments")
@@ -20,4 +46,3 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment_text
 # Create your models here.
-

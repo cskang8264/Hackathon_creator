@@ -17,11 +17,15 @@ from django.contrib import admin
 from django.urls import path ,include
 from django.contrib.auth.views import LogoutView
 from user.views import *
-import place.views
+import place.views 
 import editor.views
 import prop.views
 from django.conf import settings
 from django.conf.urls.static import static
+# from . import views
+from django.conf.urls import url
+# from .views import place
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +37,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     #장소구하기
     path('place/place/', place.views.place, name='place'),
+    # path('place/place/', place.as_view()),
     path('place/place_new/', place.views.place_new, name='place_new'),
     path('place/<int:place_id>/', place.views.place_detail, name='place_detail'),
     path('place/place_create/', place.views.place_create, name='place_create'),
@@ -62,9 +67,20 @@ urlpatterns = [
     path('prop/comment_edit/<int:pk>/', prop.views.prop_comment_edit, name="prop_comment_edit"),
     path('prop/comment_del/<int:pk>/', prop.views.prop_comment_del, name='prop_comment_del'),
 
+    #좋아요
+    # path('place/like/<int:place_id>/', place.views.PlaceLike, name='like'),
+    # path('place/favorite/<int:place_id>/', place.views.PlaceFavorite, name='favorite'),
+    # url(r'^(?P<place_pk>\d+)/like-toggle/$', place.views.place_like_toggle, name='place_like_toggle'),
+    # path("place/like/<int:place_id>/", PlaceLike.as_view()),
+    path('place/<int:pk>/like', place.views.place_like, name='place_like'),
+    # path("place/favorite/<int:place_id>/", PlaceFavorite.as_view()),
     path('user/<int:pk>/mypage', UserUpdateView.as_view(), name='mypage'),
+
     path('user/social', include('allauth.urls')),
     path('',include('learn_edit.urls')),
+
+    
+   
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

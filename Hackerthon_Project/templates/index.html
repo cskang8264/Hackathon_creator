@@ -34,6 +34,10 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4462aba8e740922eba7a69565e269ae1296814ff
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -43,12 +47,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+<<<<<<< HEAD
+                    
+                   <center> <ul class="main-menu">
+=======
                     <div class="logo">
                         <a href="{% url 'mainpage' %}">
                             <img src="{% static 'img/logo.png' %}" alt="">
                         </a>
                     </div>
                     <ul class="main-menu">
+>>>>>>> 4462aba8e740922eba7a69565e269ae1296814ff
                         <li><a href="{% url 'mainpage' %}">Home</a></li>
                         <li class=>
                             {% if not request.user.is_authenticated %}
@@ -62,6 +71,47 @@
                             {% else %}
                             <a href="/user/login/">로그인</a>
                             {% endif %}
+<<<<<<< HEAD
+                        
+                        <li><a href="{% url 'editor' %}">편집자구하기</a></li>
+                        <li><a href="{% url 'place' %}">장소구하기</a></li>
+                        <li><a href="{% url 'prop' %}">소품구하기</a></li>
+                        <li><a href="{% url 'learn:learn' %}">편집강의듣기</a></li>
+
+                        
+                    </ul></center>
+                    <div id="mobile-menu-wrap"></div>
+=======
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo">
+                    <a href="{% url 'mainpage' %}">
+                        <img src="{% static 'img/logo.png' %}" alt="">
+                    </a>
+>>>>>>> b05e31c10f711789e2e2b437fd028530971be549
+                </div>
+                <ul class="main-menu">
+                    <li><a href="{% url 'mainpage' %}">Home</a></li>
+                    <li class=>
+                        {% if not request.user.is_authenticated %}
+                        <a href="/user/create/">가입하기</a>
+                        {% endif %}
+                    </li>
+                    <li class=>
+                        {% if request.user.is_authenticated %}
+                        <a href="/user/logout/">로그아웃</a>
+                        <a href="{% url 'mypage' user.id %}">내정보</a>
+                        {% else %}
+                        <a href="/user/login/">로그인</a>
+                        {% endif %}
+=======
                             {% comment %}
                         <li><a href="#">소품구하기</a></li>
                         {% endcomment %}
@@ -71,6 +121,7 @@
                         <li><a href="./contact.html">편집강의듣기</a></li>
                         {% endcomment %}
                         <li><a href="{% url 'prop' %}">소품구하기</a></li>
+>>>>>>> 4462aba8e740922eba7a69565e269ae1296814ff
                         {% comment %}
                         <li><a href="#">편집자구하기</a></li>
                         {% endcomment %}
@@ -87,6 +138,55 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+    <section class="hero-section home-page set-bg" data-setbg="{% static 'img/mymain.png' %}">
+
+        <div class="container hero-text text-white">
+            <h1> {%block line1%} 나는  {%endblock%}</h1>
+        <h2>{%block line2%} 유튜브 {%endblock%}</h2>
+        <h3>{%block line3%} 크리에이터를{%endblock%}</h3>
+        <h1>{%block line4%} 꿈꾼다 {%endblock%}</h1>
+ 
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Footer Section Begin -->
+    {% block content %}{% endblock %}
+    <footer class="footer-section">
+        <!-- Rooms Pic Section Begin-->
+        <div class="room-pic">
+            <div class="container-fluid">
+                <div class="row sp-40">
+                </div>
+=======
+    </div>
+</header>
+<!-- Header Section End -->
+<!-- Hero Section Begin -->
+<section class="hero-section home-page set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+    <div class="container hero-text text-white">
+        {% block header %}
+        <h2>방송의 모든것 </h2>
+        <h1>LikeLion</h1>
+        {% endblock %}
+    </div>
+</section>
+<!-- Hero Section End -->
+{% block content %}{% endblock %}
+<!-- Footer Section Begin -->
+<footer class="footer-section">
+    <!-- Rooms Pic Section Begin-->
+    <div class="room-pic">
+        <div class="container-fluid">
+            <div class="row sp-40">
+>>>>>>> b05e31c10f711789e2e2b437fd028530971be549
+            </div>
+=======
     </header>
     <!-- Header Section End -->
     <!-- Hero Section Begin -->
@@ -96,6 +196,7 @@
             <h2>방송의 모든것 </h2>
             <h1>LikeLion</h1>
             {% endblock %}
+>>>>>>> 4462aba8e740922eba7a69565e269ae1296814ff
         </div>
     </section>
     <!-- Hero Section End -->
@@ -184,10 +285,28 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4462aba8e740922eba7a69565e269ae1296814ff
             <div class="row p-20">
                 <div class="col-lg-12 text-center">
                     <div class="copyright">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+<<<<<<< HEAD
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> 멋쟁이 사자처럼 7기 해커톤 <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+=======
+        <div class="row p-20">
+            <div class="col-lg-12 text-center">
+                <div class="copyright">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+>>>>>>> b05e31c10f711789e2e2b437fd028530971be549
+=======
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
                         </script>
@@ -195,6 +314,7 @@
                             aria-hidden="true"></i> by
                         <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+>>>>>>> 4462aba8e740922eba7a69565e269ae1296814ff
 
                     </div>
                 </div>

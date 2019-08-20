@@ -4,7 +4,7 @@ from .models import Place, Comment
 class Place_create(forms.ModelForm):
     class Meta:
         model = Place
-        fields = ['title','body', 'image']
+        fields = ['title','body', 'image', 'time']
 
 class CommentForm(forms.ModelForm):
     class Meta:
